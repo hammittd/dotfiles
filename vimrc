@@ -5,8 +5,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
 
 " Themes
-colorscheme tomorrow-night
-
+color dracula
 " Filetypes and syntax highlights
 filetype on
 syntax on
