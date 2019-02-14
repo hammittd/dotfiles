@@ -1,0 +1,10 @@
+# Unix
+alias lal="ls -al"
+alias ln="ln -v"
+alias mkdir="mkdir -p"
+
+# Print elements of path on newlines
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# Include custom aliases
+[[ -e ~/.aliases.local ]] && source ~/.aliases.local

@@ -2,6 +2,12 @@
 BASEDIR=$(dirname $0)
 cd $BASEDIR
 
+if [ -e ~/.aliases ];
+    then
+        rm ~/.aliases && ln -s ${PWD}/aliases ~/.aliases
+    else
+        ln -s ${PWD}/aliases ~/.aliases
+fi
 
 if [ -e ~/.bashrc ];
     then
