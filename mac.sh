@@ -46,8 +46,7 @@ if ! command -v brew >/dev/null; then
 fi
 
 if brew list | grep -Fq brew-cask; then
-    echo "Uninstalling old Homebrew-cask..."
-    brew uninstall --force brew-cask
+    echo "Uninstalling old Homebrew-cask..."    brew uninstall --force brew-cask
 fi
 
 echo "Updating Homebrew formulas..."
