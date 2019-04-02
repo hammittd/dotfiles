@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/derekhammitt/github.com/tasks_svc/app/controllers'
-let g:netrw_dirhist_2='/Users/derekhammitt/tmp'
-let g:netrw_dirhist_3='/Users/derekhammitt/github.com/finance_svc'
-let g:netrw_dirhist_4='/Users/derekhammitt/Dropbox (Trunk Club)/Notes'
-let g:netrw_dirhist_5='/Users/derekhammitt/github.com/dhammitt/dotfiles/.git'
