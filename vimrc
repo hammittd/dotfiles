@@ -36,6 +36,9 @@ set softtabstop=4    " number of spaces in a tab when editing
 set expandtab   " tabs are spaces 
 set shiftwidth=4 smarttab
 
+" Backspace
+set backspace=indent,eol,start
+
 " Configure Editor UI
 set number      " show line numbers
 set showcmd     " show commands in bottom bar

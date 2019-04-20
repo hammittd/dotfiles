@@ -37,6 +37,9 @@ case "$SHELL" in
         ;;
 esac
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Install Homebrew
 if ! command -v brew >/dev/null; then
     echo "Installing Homebrew..."
