@@ -13,6 +13,10 @@ export NVM_DIR="$HOME/.nvm"
 #   . ~/.git-completion.bash
 # fi
 
+export GOPATH=$HOME
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+
 eval "$(rbenv init -)"
 
 [[ -e ~/.aliases ]] && source ~/.aliases
