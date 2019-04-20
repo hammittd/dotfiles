@@ -3,6 +3,7 @@ filetype off
 set shell=/bin/bash
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 call vundle#begin('~/.vim/bundle/Vundle.vim')
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -10,6 +11,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Raimondi/delimitMate'
 Plugin 'fatih/vim-go'
+Plugin 'junegunn/fzf.vim'
 call vundle#end()
 
 " Remap pane navigation (doesn't require ctrl-w)
