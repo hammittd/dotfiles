@@ -30,6 +30,10 @@ set background=dark
 filetype on
 syntax on
 
+"Auto-indenting
+set autoindent
+set smartindent
+
 " Tabs
 set tabstop=4   " number of spaces per TAB 
 set softtabstop=4    " number of spaces in a tab when editing 
