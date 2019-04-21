@@ -20,6 +20,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
+let mapleader=";"
+map <Leader>n :bnext<Return>
+map <Leader>b :bprev<Return>
+map <Leader>f :b
 
 " Toggle filetree, nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
