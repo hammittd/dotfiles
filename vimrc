@@ -10,9 +10,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Raimondi/delimitMate'
-Plugin 'fatih/vim-go' { 'do': ':GoInstallBinaries' }
+Plugin 'fatih/vim-go'
 Plugin 'junegunn/fzf.vim'
 call vundle#end()
+
 
 " Remap pane navigation (doesn't require ctrl-w)
 nnoremap <C-J> <C-W><C-J>
