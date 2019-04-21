@@ -12,14 +12,18 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'Raimondi/delimitMate'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/fzf.vim'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()
-
 
 " Remap pane navigation (doesn't require ctrl-w)
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
+
+" Toggle filetree, nerdtree settings
+map <C-n> :NERDTreeToggle<CR>
+set mouse=a
 
 " Set horizontal splits (sp) and vertical splits (vsp) to open below and to the right
 set splitbelow
@@ -30,7 +34,7 @@ color gruvbox
 set background=dark
 
 " Filetypes and syntax highlights
-filetype on
+filetype plugin indent on
 syntax on
 
 "Auto-indenting
