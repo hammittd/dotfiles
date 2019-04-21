@@ -38,6 +38,8 @@ set mouse=a
 " TagBar Toggle
 nmap <C-t> :TagbarToggle<CR>
 
+" FZF Search
+map <C-f> :Files<CR>
 " Set horizontal splits (sp) and vertical splits (vsp) to open below and to the right
 set splitbelow
 set splitright
