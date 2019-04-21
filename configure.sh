@@ -43,3 +43,10 @@ if [[ -e ~/.zshrc.local  ]];
     else
         ln -s ${PWD}/zshrc.local ~/.zshrc.local
 fi
+
+if [[ -e ~/.profile ]];
+    then
+        rm ~/.profile && ln -s ${PWD}/profile.symlink ~/.profile
+    else
+        ln -s ${PWD}/profile.symlink ~/.profile
+fi
