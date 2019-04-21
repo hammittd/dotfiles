@@ -4,7 +4,8 @@ set shell=/bin/bash
 
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/opt/fzf
-call vundle#begin('~/.vim/bundle/Vundle.vim')
+set rtp+=~/.vim/bundle
+call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
@@ -13,21 +14,29 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'valloric/youcompleteme'
+Plugin 'majutsushi/tagbar'
 call vundle#end()
 
+let mapleader=";"
 " Remap pane navigation (doesn't require ctrl-w)
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
-let mapleader=";"
+
+" Switching buffers
 map <Leader>n :bnext<Return>
 map <Leader>b :bprev<Return>
 map <Leader>f :b
+set hidden " don't require a save when switching buffers
 
 " Toggle filetree, nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
 set mouse=a
+
+" TagBar Toggle
+nmap <C-t> :TagbarToggle<CR>
 
 " Set horizontal splits (sp) and vertical splits (vsp) to open below and to the right
 set splitbelow
