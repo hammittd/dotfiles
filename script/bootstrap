@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+success () {
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+info () {
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+fail () {
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit
+}
+
+add_cron () {
+    local frequency="*/15 * * * *"
+    local command=$1
+    local job="$frequency $command"
+    cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+}
+
+add_line () {
+    local command=$1
+    local job="$command"
+    cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+}
+
+if ! [ -f /usr/local/bin/airport ]
+    then
+        sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+        success "symlink for airport created"
+else 
+    info "symlink for airport already exists"
+fi
+
+add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    if [[ $? -eq 0 ]]
+        then
+          success "$PATH added to crontab"
+        else
+          info "ERROR $PATH could not be added to crontab"
+    fi
+
+add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
+    if [[ $? -eq 0 ]]
+        then
+            success "crontab created for speedtest cli --simple"
+        else
+            info "ERROR: crontab could not be created for speedtest cli --simple"
+    fi
+
+add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
+    if [[ $? -eq 0 ]]
+        then
+            success "crontab created for speedtest-cli --json"
+        else
+            info "ERROR: crontab could not be created for speedtest-cli --json"
+    fi
