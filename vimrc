@@ -10,7 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Raimondi/delimitMate'
-Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go' { 'do': ':GoInstallBinaries' }
 Plugin 'junegunn/fzf.vim'
 call vundle#end()
 
