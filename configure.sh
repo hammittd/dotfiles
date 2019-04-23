@@ -15,9 +15,9 @@ else
 fi
 
 if [[ -L ~/.tmux.conf ]]; then
-    rm ~/.tmux.conf && ln -s ${PWD}/tmux ~/.tmux
+    rm ~/.tmux.conf && ln -s ${PWD}/tmux/tmux.conf ~/.tmux.conf
 else
-	ln -s ${PWD}/tmux ~/.tmux.conf
+	ln -s ${PWD}/tmux/tmux.conf ~/.tmux.conf
 fi
 
 if [[ -L ~/.vim ]]; then
