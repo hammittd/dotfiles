@@ -19,7 +19,7 @@ Plugin 'majutsushi/tagbar'
 call vundle#end()
 
 let mapleader=";"
-" Remap pane navigation (doesn't require ctrl-w)
+" Remap window navigation (doesn't require ctrl-w)
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
@@ -28,7 +28,7 @@ nnoremap <C-L> <C-W><C-L>
 " Switching buffers
 map <Leader>n :bnext<Return>
 map <Leader>b :bprev<Return>
-map <Leader>f :b
+map <Leader>f :ls<CR> :b<Space>
 set hidden " don't require a save when switching buffers
 
 " Toggle filetree, nerdtree settings
