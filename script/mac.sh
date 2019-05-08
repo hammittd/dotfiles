@@ -37,17 +37,6 @@ case "$SHELL" in
         ;;
 esac
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Install Homebrew
-if ! command -v brew >/dev/null; then
-    echo "Installing Homebrew..."
-    curl -fsS \
-        'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-    export PATH="/usr/local/bin:$PATH"
-fi
-
 if brew list | grep -Fq brew-cask; then
     echo "Uninstalling old Homebrew-cask..."    brew uninstall --force brew-cask
 fi
@@ -66,11 +55,10 @@ brew "git"
 brew "openssl"
 brew "rcm"
 brew "reattach-to-user-namespace"
-brew "the_silver_searcher"
+brew "fzf"
 brew "tmux"
 brew "vim"
 brew "watchman"
-brew "zsh"
 
 brew "heroku/brew/heroku"
 brew "parity"

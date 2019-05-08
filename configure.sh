@@ -1,45 +1,46 @@
-#!/usr/bin/env bash
-BASEDIR=$(dirname $0)
-cd $BASEDIR
+#!/bin/bash
 
-if [[ -L ~/.aliases ]]; then
-    rm ~/.aliases && ln -s ${PWD}/aliases ~/.aliases
-else
-    ln -s ${PWD}/aliases ~/.aliases
+if test ! $(which brew)
+then
+    echo 'Installing Homebrew...'
+
+    if test "$(uname)" = "Darwin"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    elif test "$(expr substr $(uname -s) 1 5)" = "Linux" 
+    then
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+    fi
 fi
 
-if [[ -L ~/.bashrc ]]; then
-    rm ~/.bashrc && ln -s ${PWD}/bashrc ~/.bashrc
-else
-	ln -s ${PWD}/bashrc ~/.bashrc
+echo 'Updating package lists...'
+brew update
+
+if test $(which zsh)
+    echo "Zsh already installed"
+else 
+    echo "Zsh not found. Installing zsh..."
+    echo ''
+    brew install zsh zsh-completions
 fi
 
-if [[ -L ~/.tmux.conf ]]; then
-    rm ~/.tmux.conf && ln -s ${PWD}/tmux ~/.tmux
+if [ -d ~/.oh-my-zsh ]; then
+    echo ''
+    echo 'Oh My Zsh already installed'
 else
-	ln -s ${PWD}/tmux ~/.tmux.conf
+    echo 'Oh My Zsh not found. Installing Oh My Zsh...'
+    echo ''
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-if [[ -L ~/.vim ]]; then
-    rm -R ~/.vim && ln -s ${PWD}/vim/ ~/.vim
-else
-    ln -s ${PWD}/vim/ ~/.vim
-fi
+# vimrc vundle install
+echo ''
+echo "Now installing vundle..."
+echo ''
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-if [[ -L ~/.vimrc  ]]; then
-    rm ~/.vimrc && ln -s ${PWD}/vimrc ~/.vimrc
-else
-    ln -s ${PWD}/vimrc ~/.vimrc
-fi
+# Nerdtree for vim install
+echo ''
+echo "Now installing Nerdtree for Vim..."
+echo ''
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
-if [[ -L ~/.zshrc.local  ]]; then
-    rm ~/.zshrc.local && ln -s ${PWD}/zshrc.local ~/.zshrc.local
-else
-    ln -s ${PWD}/zshrc.local ~/.zshrc.local
-fi
-
-if [[ -L ~/.profile ]]; then
-    rm ~/.profile && ln -s ${PWD}/profile.symlink ~/.profile
-else
-    ln -s ${PWD}/profile.symlink ~/.profile
-fi
