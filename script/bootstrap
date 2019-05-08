@@ -33,8 +33,8 @@ link_file () {
 install_dotfiles () {
 	for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
 	do
-        echo "Checking for existing $(basename ${src%.symlink}) symlink..."
-        if [[ -e ~/${src%.symlink} ]]; then
+        echo "Checking for existing .$(basename ${src%.symlink}) symlink..."
+        if [ -e "${HOME}/.$(basename ${src%.symlink})" ]; then
             echo "symlink for ${src} exists"
         else
 		    dst="$HOME/.$(basename "${src%.*}")"
