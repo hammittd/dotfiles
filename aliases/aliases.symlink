@@ -2,7 +2,7 @@
 alias lal="ls -al"
 alias ln="ln -v"
 alias mkdir="mkdir -p"
-alias repos="cd /Users/$(whoami)/src/github.com/hammittd"
+alias repos="cd /Users/$(whoami)/src/github.com/"
 # alias vim="nvim"
 # Print elements of path on newlines
 alias path='echo $PATH | tr -s ":" "\n"'
