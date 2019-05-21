@@ -1,4 +1,0 @@
-# Edit this file to modify zsh config. ~/.zshrc is created by oh-my-zsh, and is not symlinked
-# Ensure ~/.zshrc.local is sourced in ~/.zshrc
-export PATH="$HOME/.rbenv/bin:$PATH"
-source ~/.aliases
