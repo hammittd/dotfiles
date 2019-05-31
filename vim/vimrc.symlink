@@ -31,6 +31,9 @@ map <Leader>b :bprev<Return>
 map <Leader>f :b
 set hidden " don't require a save when switching buffers
 
+" Write the contents of a file, if modified, on most commands
+set autowriteall
+
 " Toggle filetree, nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
 set mouse=a
