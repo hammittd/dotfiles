@@ -1,3 +1,15 @@
+" Initial Setup: Ensure vundle is installed and available for vim:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" This git repo ignores the /bundle/ subdirectory because these plugins are
+" also git repos, which causes issues for the dotfiles repo.
+" 
+" After vundle is cloned into /bundle/Vundle.vim, open vim and run
+" :PluginInstall
+"
+" Lastly, this will likely produce an error message for the youcompleteme
+" server. If that is the case, open the youcompleteme repo and run the
+" install.py script. You may need to install MacVim and cmake:
+" $ brew install macvim cmake
 set nocompatible
 filetype off
 set shell=/bin/bash
