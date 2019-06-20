@@ -22,12 +22,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
-Plugin 'Raimondi/delimitMate'
-Plugin 'fatih/vim-go'
 Plugin 'junegunn/fzf.vim'
+Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
-Plugin 'valloric/youcompleteme'
 Plugin 'majutsushi/tagbar'
+Plugin 'valloric/youcompleteme'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
 let mapleader=";"
@@ -94,3 +96,12 @@ set foldenable
 set foldlevelstart=10   " open most folds by default
 set foldmethod=indent   " fold based on indent level
 
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
