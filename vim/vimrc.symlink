@@ -1,17 +1,23 @@
-" Initial Setup: Ensure vundle is installed and available for vim:
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" This git repo ignores the /bundle/ subdirectory because these plugins are
-" also git repos, which causes issues for the dotfiles repo.
-" 
-" After vundle is cloned into /bundle/Vundle.vim, open vim and run
-" :PluginInstall
-"
-" Lastly, this will likely produce an error message for the youcompleteme
-" server. If that is the case, open the youcompleteme repo and run the
-" install.py script. You may need to install MacVim and cmake:
-" $ brew install macvim cmake
-set nocompatible
-filetype off
+" Protect changes in between writes.
+" These options have default values:
+" updatecount: 200 keystrokes, updatetime: 4 seconds
+set swapfile
+set directory^=~/.vim/swap//
+" Protect against crash-during-write (while saving!)
+set writebackup
+" But... don't save that backup after a successful save
+set nobackup
+" Use rename-and-write-new method when safe
+set backupcopy=auto
+" Patch 8.1.0251 requried for double-slash
+if has("patch-8.1.0251")
+    " consolidate writebackups - often deleted anyway
+    set backupdir^=~/.vim/backup//
+end
+
+" Keep undo tree!
+set undofile
+set undodir^=~/.vim/undo//
 set shell=/bin/zsh
 
 " Remap window navigation (doesn't require ctrl-w)
@@ -20,57 +26,76 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
 
-" Switching buffers
-map <Leader>n :bnext<Return>
-map <Leader>b :bprev<Return>
-map <Leader>f :ls<CR> :b<Space>
-set hidden " don't require a save when switching buffers
+"""""""""""""""""""""""""""""
+" shortcuts for 3-way merges
+"""""""""""""""""""""""""""""
+map <Leader>1 :diffget LOCAL<CR>
+map <Leader>2 :diffget BASE<CR>
+map <Leader>3 :diffget REMOTE<CR>
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience
+endif
 
-" Set horizontal splits (sp) and vertical splits (vsp) to open below and to the right
-set splitbelow
-set splitright
-
-" Themes
-set background=dark
-
-" Filetypes and syntax highlights
-filetype plugin indent on
-syntax on
-
-"Auto-indenting
-set autoindent
-set smartindent
-
-" Tabs
-set tabstop=4   " number of spaces per TAB 
-set softtabstop=4    " number of spaces in a tab when editing 
-set expandtab   " tabs are spaces 
-set shiftwidth=4 smarttab
-
-" Backspace
-set backspace=indent,eol,start
-
+"""""""""""""""""""""""""""""
 " Configure Editor UI
-set number      " show line numbers
-set showcmd     " show commands in bottom bar
-set lazyredraw  " redraw only when necessary
-set showmatch   " highlight matching parens, brackets, etc.
+"""""""""""""""""""""""""""""
+set ruler
+set number	" show line numbers
+set list	" show trailing whitespace
+" But only interesting whitespace
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+set hlsearch
+set incsearch	" search while typing
+set showmatch
+if &term =~ '256color'
+	" disable Background Color Erase so that color schemes
+	" render properly while in 256-color tmux / GNU screen.
+	set t_ut=
+endif
+set foldcolumn=1
 
-" Searching
-set hlsearch    " highlight search matches - :nohlsearch will remove highlighting
-set incsearch   " search as characters are input
+"""""""""""""""""""""""""""""
+" Colors and Fonts
+"""""""""""""""""""""""""""""
+syntax enable
+filetype plugin on
+filetype indent on
+set encoding=utf8
+" Backspace behaves normally
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+"""""""""""""""""""""""""""""
+" Tab Stuff
+"""""""""""""""""""""""""""""
+set expandtab " Spaces instead of whitespace
+set smarttab  " Smart tabs
+set shiftwidth=2
+set tabstop=2
+set lbr
+set tw=500
+set ai " auto indent
+set si " smart indent
+set wrap " wrap lines
 
 " Folding
 set foldenable
 set foldlevelstart=10   " open most folds by default
 set foldmethod=indent   " fold based on indent level
 
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_debug = 1
+" C indenting engine
+setlocal cindent
+" "Allman" style indentation
+" (https://en.wikipedia.org/wiki/Indentation_style#Allman_style)(https://en.wikipedia.org/wiki/Eric_Allman)
+setlocal cino="Ls,:0,l1,to,(s,U1,W4"
+" no preview in menu
+setlocal completeopt=menu
+
+iabbrev #i #include
+iabbrev #d #define
+iabbrev main() int main(int argc, char **argv)
+iabbrev #g _<c-r>=expand("%:t:r")<cr><esc>VgUV:s/[^A-Z]/_/g<cr>A_H<esc>yypki#ifndef <esc>j0i#define <esc>o<cr><cr>#endif<esc>2ki
+
+set mouse=n

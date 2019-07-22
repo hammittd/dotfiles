@@ -1,2 +1,5 @@
 /bin/bandwidth.*
-/vim/bundle/*
+!vim/
+vim/*
+!vim/pack
+!vim/vimrc.symlink
